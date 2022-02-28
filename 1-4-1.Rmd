@@ -1,0 +1,70 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Section 1.4 1.4 Explore your first datasets
+
+Let’s put everything we’ve learned so far into practice and start exploring some real data! Data comes to us in a variety of formats, from pictures to text to numbers. Throughout this book, we’ll focus on datasets that are saved in “spreadsheet”-type format. This is probably the most common way data are collected and saved in many fields. Remember from Subsection 1.2.1 that these “spreadsheet”-type datasets are called data frames in R. We’ll focus on working with data saved as data frames throughout this book.
+
+Let’s first load all the packages needed for this chapter, assuming you’ve already installed them. Read Section 1.3 for information on how to install and load R packages if you haven’t already.
+
+```{r}
+library(nycflights13)                   # Provides our dataset.
+library(dplyr)                          # Provide data manipulation functions.
+library(knitr)                          # Used to make R noteboos.
+```
+
+
+## 1.4.1 nycflights13 package
+
+Any of us have flown on airplanes or know someone who has. Air travel has become an ever-present aspect of many people’s lives. If you look at the Departures flight information board at an airport, you will frequently see that some flights are delayed for a variety of reasons. Are there ways that we can understand the reasons that cause flight delays?  
+
+We’d all like to arrive at our destinations on time whenever possible. (Unless you secretly love hanging out at airports. If you are one of these people, pretend for a moment that you are very much anticipating being at your final destination.) Throughout this book, we’re going to analyze data related to all domestic flights departing from one of New York City’s three main airports in 2013: Newark Liberty International (EWR), John F. Kennedy International (JFK), and LaGuardia Airport (LGA). We’ll access this data using the **nycflights13** R package, which contains five datasets saved in five data frames:
+
+* flights: Information on all 336,776 flights.
+* airlines: A table matching airline names and their two-letter International Air * * Transport Association (IATA) airline codes (also known as carrier codes) for 16 airline companies. For example, “DL” is the two-letter code for Delta.
+* planes: Information about each of the 3,322 physical aircraft used.
+* weather: Hourly meteorological data for each of the three NYC airports. This data frame has 26,115 rows, roughly corresponding to the $365 \cdot 24 \cdot 3 =26,280$ 
+possible hourly measurements one can observe at three locations over the course of a year.
+
+* airports: Names, codes, and locations of the 1,458 domestic destinations.  
+
+## 1.4.2 flights data frame  
+
+We’ll begin by exploring the flights data frame and get an idea of its structure. Run the following code in your console, either by typing it or by cutting-and-pasting it. It displays the contents of the flights data frame in your console. Note that depending on the size of your monitor, the output may vary slightly.  
+
+```{r}
+flights
+```
+
+
+Let’s unpack this output:
+
+* A tibble: 336,776 x 19: A tibble is a specific kind of data frame in R. This particular data frame has 336,776 rows corresponding to different observations. Here, each observation is a flight. 
+
+* 19 columns corresponding to 19 variables describing each observation.
+year, month, day, dep_time, sched_dep_time, dep_delay, and arr_time are the different columns, in other words, the different variables of this dataset. 
+
+* We then have a preview of the first 10 rows of observations corresponding to the first 10 flights. R is only showing the first 10 rows, because if it showed all 336,776 rows, it would overwhelm your screen.
+
+* ... with 336,766 more rows, and 11 more variables: indicating to us that 336,766 more rows of data and 11 more variables could not fit in this screen.
+
+Unfortunately, this output does not allow us to explore the data very well, but it does give a nice preview. Let’s look at some different ways to explore data frames.
+
+## 1.4.3  Exploring data frames  
+
+There are many ways to get a feel for the data contained in a data frame such as flights. We present three functions that take as their “argument” (their input) the data frame in question. We also include a fourth method for exploring one particular column of a data frame:
+
+1. Using the View() function, which brings up RStudio’s built-in data viewer.
+2. Using the glimpse() function, which is included in the dplyr package.
+3. Using the kable() function, which is included in the knitr package.
+4. Using the $ “extraction operator,” which is used to view a single variable/column in a data frame.  
+
+** 1. Using the View() function**
+>>1. View():
+
+>> Run View(flights) in your console in RStudio, either by typing it or cutting-and-pasting it into the console pane. Explore this data frame in the resulting pop up viewer. You should get into the habit of viewing any data frames you encounter. Note the uppercase V in View(). R is case-sensitive, so you’ll get an error message if you run view(flights) instead of View(flights).  
+
+
+
